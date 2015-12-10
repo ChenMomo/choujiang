@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="choujiang" />
+<meta name="description" content="choujiangtest" />
+<title>choujiang</title>
+<script language="javascript">
+<!--
+// global variables
+var timer;
+var flag = new Array(100);
+var existingnum = new Array(100);
+var clickTimes = 0;
+var randnum;
+var cellnum =1;
+var mobile = new Array();
+// 抽奖数据!!
+mobile[0]="福州  87508485";
+mobile[1]="福州  15960181847";
+mobile[2]="福州  15980269864";
+mobile[3]="福州  15960181847";
+mobile[4]="莆田  15860098899";
+mobile[5]="福州  13635269858";
+mobile[6]="漳州  13123357220";
+
+var num = mobile.length-1;
+function getRandNum(){
+num=parseInt(num);
+var y=GetRnd(0,num);
+document.getElementById("result").value = mobile[y];
+}
+function start(){
+clearInterval(timer);
+timer = setInterval('change()',50);
+}
+function ok(){
+clearInterval(timer);
+}
+function GetRnd(m,n){
+randnum =parseInt(Math.random()*(n-m+1));
+return randnum;
+}
+function setTimer(){
+ time=setInterval("getRandNum()",10);
+ document.getElementById("start").disabled = true;
+ document.getElementById("end").disabled = false;
+ document.getElementById("start").style.background = "queding.png";
+}
+function clearTimer(){
+ noDupNum();
+ clearInterval(time);
+ document.getElementById("start").disabled = false;
+ document.getElementById("end").disabled = true;
+ setValues();
+}
+function noDupNum(){
+ // to remove the selected mobile phone number
+ mobile.removeEleAt(randnum);
+ // to reorganize the mobile number array!!
+ var o = 0;
+ for(p=0; p<mobile.length;p++){
+ if(typeof mobile[p]!="undefined"){
+ mobile[o] = mobile[p];
+ o++;
+ }
+ }
+ num = mobile.length-1;
+ }
+// method to remove the element in the array
+Array.prototype.removeEleAt = function(dx)
+ {
+ if(isNaN(dx)||dx>this.length){return false;}
+ this.splice(dx,1);
+ }
+// set mobile phone numbers to the table cell
+function setValues(){
+ document.getElementById(cellnum).value =
+document.getElementById("result").value ;
+ cellnum++;
+ }
+//-->
+</script>
+</head>
+<body background="bg.png";>
+<div id="main">
+<div align="center">
+<!--抽奖框-->
+<div style="position: absolute; left: 427px; top: 238px; width: 470px; height: 80px;">
+<input id="result" type="text" size="30" style="height:58px;width:336px;font-size:35px; border:0px;background:transparent;" >
+</div>
+
+<!--<div style="position: absolute; left: 473px; top: 328px; width: 186px; height: 58px;">
+<input id="start" type="button" value="" style="border:1px solid;border-color:#aaa #000 #000 #aaa;width:186px; height:58px; visibility: visble; background:url(quedingh.png)" onclick="setTimer()" />
+</div>-->
+<div style="position: absolute; left: 473px; top: 328px; width: 186px; height: 58px;">
+<input id="start" type="button" value="" style="border:0px solid;border-color:#aaa #000 #000 #aaa;width:186px; height:58px; background:url(quedingh.png)" onclick="setTimer()" />
+</div>
+
+</div>
+</div>
+<div style="position: absolute; left: 619px; top: 328px; width: 194px; height: 52px;">
+<input id="end" type="button" value="" style="border:0px solid;border-color:#aaa #000 #000 #aaa;width:186px; height:58px; background:url(tingzhih.png)" onclick="clearTimer()" disabled/>
+</div>
+
+<div style="position: absolute; left: 149px; top: 404px; width: 300px; height: 52px;">
+  <input name="text1" type="text" id="1" style="height:52px;width:300px;font-size:25px;border:0px;background:transparent;" />
+</div>
+<div style="position: absolute; left: 531px; top: 404px; width: 300px; height: 52px;">
+  <input name="text2" type="text" id="2"style="height:52px;width:300px;font-size:25px;border:0px;background:transparent;" >
+</div>
+<div style="position: absolute; left: 910px; top: 404px; width: 300px; height: 52px;">
+  <input name="text3" type="text" id="3"style="height:52px;width:300px;font-size:25px;border:0px;background:transparent;" >
+</div>
+
+<div style="position: absolute; left: 149px; top: 490px; width: 300px; height: 52px;">
+  <input name="text4" type="text" id="4"style="height:52px;width:300px;font-size:25px;border:0px;background:transparent;" />
+<div style="position: absolute; left: 382px; top: 0px; width: 300px; height: 52px;">
+  <input name="text5" type="text" id="5"style="height:52px;width:300px;font-size:25px;border:0px;background:transparent;" />
+<div style="position: absolute; left: 382px; top: 0px; width: 300px; height: 52px;">
+  <input name="text6" type="text" id="6"style="height:52px;width:300px;font-size:25px;border:0px;background:transparent;" />
+</div>
+</div>
+</div>
+</body>
+</html>

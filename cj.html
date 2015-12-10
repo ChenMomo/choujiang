@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="choujiang" />
+<meta name="description" content="choujiangtest" />
+<title>choujiang</title>
+<script language="javascript">
+<!--
+// global variables
+var timer;
+var flag = new Array(100);
+var existingnum = new Array(100);
+var clickTimes = 0;
+var randnum;
+var cellnum =1;
+var mobile = new Array();
+
+// 抽奖数据!!
+mobile[0]="福州  875*****";
+mobile[1]="福州  159*****847";
+mobile[2]="福州  159*****864";
+mobile[3]="福州  159*****847";
+mobile[4]="莆田  158*****899";
+mobile[5]="福州  136*****858";
+mobile[6]="漳州  131*****220";
+mobile[7]="泉州 221*****";
+mobile[8]="泉州  139*****291";
+mobile[9]="泉州  227*****";
+mobile[10]="泉州  135*****464";
+mobile[11]="泉州  153*****617";
+mobile[12]="泉州  280*****";
+mobile[13]="泉州  133*****787";
+mobile[14]="泉州  135*****408";
+mobile[15]="泉州  139*****052";
+mobile[16]="泉州  136*****666";
+mobile[17]="泉州  138*****717";
+mobile[18]="泉州  136*****643";
+mobile[19]="南平  138*****587";
+mobile[20]="南平  136*****331";
+mobile[21]="南平  783*****";
+mobile[22]="南平  137*****659";
+mobile[23]="南平  136*****767";
+mobile[24]="南平  792*****";
+mobile[25]="南平  139*****451";
+mobile[26]="三明  134*****649";
+mobile[27]="龙岩  135*****049";
+mobile[28]="罗源  186*****515";
+mobile[29]="闽侯  136*****307";
+mobile[30]="闽侯  136*****549";
+mobile[31]="漳州  153*****597";
+mobile[32]="南平  137*****793";
+mobile[33]="南平  147*****846";
+mobile[34]="南平  136*****663";
+mobile[35]="闽清  225*****";
+mobile[36]="长乐  281*****";
+mobile[37]="长乐  136*****926";
+mobile[38]="福清  857*****";
+mobile[39]="长乐  289*****";
+mobile[40]="永泰  186*****987";
+mobile[41]="漳州  138*****553";
+mobile[42]="福清  857*****";
+mobile[43]="连江  131*****062";
+mobile[44]="闽侯  139*****232";
+mobile[45]="福清  130*****285";
+mobile[46]="闽清  187*****145";
+mobile[47]="漳州  138*****455";
+mobile[48]="三明市  139*****326";
+mobile[49]="连江  134*****442";
+mobile[50]="闽清  135*****192";
+mobile[51]="福清  132*****885";
+mobile[52]="福清  860*****";
+mobile[53]="泉州  135*****275";
+mobile[54]="连江  134*****751";
+mobile[55]="宁德  130*****588";
+mobile[56]="闽清  138*****081";
+mobile[57]="三明  151*****729";
+mobile[58]="三明  147*****886";
+mobile[59]="福州  159*****639";
+mobile[60]="宁德  138*****580";
+mobile[61]="永泰  159*****577";
+mobile[62]="闽侯  222*****";
+mobile[63]="三明  139*****628";
+mobile[64]="宁德  139*****740";
+mobile[65]="漳州  158*****980";
+mobile[66]="漳州  181*****787";
+mobile[67]="罗源  138*****345";
+mobile[68]="闽侯  159*****627";
+mobile[69]="福清  134*****538";
+mobile[70]="连江  156*****283";
+mobile[71]="罗源  150*****356";
+mobile[72]="福清  131*****542";
+mobile[73]="闽侯  222*****";
+mobile[74]="漳州  187*****670";
+mobile[75]="漳州  335*****";
+mobile[76]="闽侯  222*****";
+mobile[77]="闽清  139*****173";
+mobile[78]="漳州  152*****801";
+mobile[79]="漳州  137*****776";
+mobile[80]="闽侯  222*****";
+mobile[81]="漳州  132*****768";
+mobile[82]="永泰  135*****869";
+mobile[83]="漳州  332*****";
+mobile[84]="漳州  335*****";
+mobile[85]="漳州  138*****138";
+mobile[86]="漳州  158*****510";
+mobile[87]="泉州  138*****982";
+mobile[88]="闽侯  136*****129";
+mobile[89]="闽侯  183*****857";
+mobile[90]="三明  138*****446";
+mobile[91]="漳州  335*****";
+mobile[92]="福清  139*****965";
+mobile[93]="南平  134*****938";
+mobile[94]="龙岩  135*****352";
+mobile[95]="泉州  159*****195";
+mobile[96]="长乐  137*****945";
+mobile[97]="泉州  137*****999";
+mobile[98]="泉州  189*****221";
+mobile[99]="漳州  868*****";
+mobile[100]="福州  758*****";
+mobile[101]="福州  189*****351";
+mobile[102]="福州  132*****888";
+mobile[103]="福州  131*****125";
+mobile[104]="福州  130*****612";
+mobile[105]="福州  159*****864";
+mobile[106]="福州  137*****632";
+mobile[107]="连江  221*****";
+mobile[108]="福州  134*****188";
+mobile[109]="莆田  138*****993";
+mobile[110]="莆田  130*****270";
+mobile[111]="宁德  136*****580";
+mobile[112]="福州  136*****858";
+mobile[113]="南平  135*****956";
+mobile[114]="南平  138*****587";
+mobile[115]="南平  138*****600";
+mobile[116]="南平  138*****143";
+mobile[117]="南平  136*****331";
+mobile[118]="南平  136*****331";
+mobile[119]="南平  187*****872";
+mobile[120]="南平  138*****088";
+mobile[121]="南平  138*****665";
+mobile[122]="南平  862*****";
+mobile[123]="南平  151*****925";
+mobile[124]="南平  138*****736";
+mobile[125]="南平  138*****183";
+mobile[126]="南平  152*****213";
+mobile[127]="南平  652*****";
+mobile[128]="南平  139*****451";
+mobile[129]="南平  846*****";
+mobile[130]="南平  138*****826";
+mobile[131]="南平  139*****063";
+mobile[132]="南平  137*****619";
+mobile[133]="福州  158*****816";
+mobile[134]="三明  135*****557";
+mobile[135]="龙岩  232*****";
+mobile[136]="龙岩 159*****896";
+mobile[137]="龙岩  296*****";
+mobile[138]="龙岩  136*****592";
+mobile[139]="龙岩  136*****068";
+mobile[140]="闽侯  159*****189";
+mobile[141]="南平  187*****199";
+mobile[142]="闽侯  137*****008";
+mobile[143]="莆田  139*****001";
+mobile[144]="南平  158*****702";
+mobile[145]="南平  147*****846";
+mobile[146]="闽侯  139*****461";
+mobile[147]="连江  183*****563";
+mobile[148]="福清  857*****";
+mobile[149]="莆田  138*****688";
+mobile[150]="莆田  135*****036";
+mobile[151]="莆田  138*****399";
+mobile[152]="莆田  138*****399";
+mobile[153]="南平  139*****953";
+mobile[154]="闽侯  134*****910";
+mobile[155]="南平  138*****833";
+mobile[156]="宁德  135*****393";
+mobile[157]="连江  134*****442";
+mobile[158]="南平  158*****350";
+mobile[159]="南平  134*****896";
+mobile[160]="宁德  130*****588";
+mobile[161]="莆田  139*****565";
+mobile[162]="闽侯  222*****";
+mobile[163]="福州  136*****658";
+mobile[164]="永泰  134*****601";
+mobile[165]="永泰  150*****055";
+mobile[166]="南平  138*****635";
+mobile[167]="福州  134*****737";
+mobile[168]="闽侯  159*****627";
+mobile[169]="连江  150*****658";
+mobile[170]="长乐  136*****141";
+mobile[171]="闽侯  222*****";
+mobile[172]="连江  135*****414";
+mobile[173]="福州  130*****918";
+mobile[174]="宁德  131*****956";
+mobile[175]="长乐  286*****";
+mobile[176]="南平  132*****273";
+mobile[177]="南平  139*****560";
+mobile[178]="南平  139*****560";
+mobile[179]="莆田  150*****960";
+mobile[180]="闽侯  132*****162";
+mobile[181]="宁德  138*****917";
+mobile[182]="南平  133*****136";
+mobile[183]="闽侯  136*****129";
+mobile[184]="闽侯  183*****857";
+mobile[185]="福州  150*****771";
+mobile[186]="宁德  139*****575";
+mobile[187]="福清  139*****229";
+mobile[188]="南平  134*****938";
+mobile[189]="龙岩  135*****352";
+mobile[190]="宁德  186*****019";
+mobile[191]="南平  136*****389";
+mobile[192]="南平  188*****068";
+mobile[193]="宁德  858*****";
+mobile[194]="宁德  180*****839";
+mobile[195]="宁德  558*****";
+mobile[196]="福清  856*****";
+mobile[197]="宁德  180*****898";
+mobile[198]="宁德  180*****848";
+
+var num = mobile.length-1;
+function getRandNum(){
+num=parseInt(num);
+var y=GetRnd(0,num);
+document.getElementById("result").value = mobile[y];
+}
+function start(){
+clearInterval(timer);
+timer = setInterval('change()',50);
+}
+function ok(){
+clearInterval(timer);
+}
+function GetRnd(m,n){
+randnum =parseInt(Math.random()*(n-m+1));
+return randnum;
+}
+function setTimer(){
+ time=setInterval("getRandNum()",10);
+ document.getElementById("start").disabled = true;
+ document.getElementById("end").disabled = false;
+ document.getElementById("start").style.background = "queding.png";
+}
+function clearTimer(){
+ noDupNum();
+ clearInterval(time);
+ document.getElementById("start").disabled = false;
+ document.getElementById("end").disabled = true;
+ setValues();
+}
+function noDupNum(){
+ // to remove the selected mobile phone number
+ mobile.removeEleAt(randnum);
+ // to reorganize the mobile number array!!
+ var o = 0;
+ for(p=0; p<mobile.length;p++){
+ if(typeof mobile[p]!="undefined"){
+ mobile[o] = mobile[p];
+ o++;
+ }
+ }
+ num = mobile.length-1;
+ }
+// method to remove the element in the array
+Array.prototype.removeEleAt = function(dx)
+ {
+ if(isNaN(dx)||dx>this.length){return false;}
+ this.splice(dx,1);
+ }
+// set mobile phone numbers to the table cell
+function setValues(){
+ document.getElementById(cellnum).value =
+document.getElementById("result").value ;
+ cellnum++;
+ }
+//-->
+</script>
+</head>
+<body background="bg.png";>
+<div id="main">
+<div align="center">
+<!--抽奖框-->
+<div style="position: absolute; left: 427px; top: 238px; width: 470px; height: 80px;">
+<input id="result" type="text" size="30" style="height:58px;width:336px;font-size:35px; border:0px;background:transparent;" >
+</div>
+
+<!--<div style="position: absolute; left: 473px; top: 328px; width: 186px; height: 58px;">
+<input id="start" type="button" value="" style="border:1px solid;border-color:#aaa #000 #000 #aaa;width:186px; height:58px; visibility: visble; background:url(quedingh.png)" onclick="setTimer()" />
+</div>-->
+<div style="position: absolute; left: 473px; top: 328px; width: 186px; height: 58px;">
+<input id="start" type="button" value="" style="border:0px solid;border-color:#aaa #000 #000 #aaa;width:186px; height:58px; background:url(quedingh.png)" onclick="setTimer()" />
+</div>
+
+</div>
+</div>
+<div style="position: absolute; left: 619px; top: 328px; width: 194px; height: 52px;">
+<input id="end" type="button" value="" style="border:0px solid;border-color:#aaa #000 #000 #aaa;width:186px; height:58px; background:url(tingzhih.png)" onclick="clearTimer()" disabled/>
+</div>
+
+<div style="position: absolute; left: 149px; top: 404px; width: 300px; height: 52px;">
+  <input name="text1" type="text" id="1" style="height:52px;width:300px;font-size:25px;border:0px;background:transparent;" />
+</div>
+<div style="position: absolute; left: 531px; top: 404px; width: 300px; height: 52px;">
+  <input name="text2" type="text" id="2"style="height:52px;width:300px;font-size:25px;border:0px;background:transparent;" >
+</div>
+<div style="position: absolute; left: 910px; top: 404px; width: 300px; height: 52px;">
+  <input name="text3" type="text" id="3"style="height:52px;width:300px;font-size:25px;border:0px;background:transparent;" >
+</div>
+
+<div style="position: absolute; left: 149px; top: 490px; width: 300px; height: 52px;">
+  <input name="text4" type="text" id="4"style="height:52px;width:300px;font-size:25px;border:0px;background:transparent;" />
+<div style="position: absolute; left: 382px; top: 0px; width: 300px; height: 52px;">
+  <input name="text5" type="text" id="5"style="height:52px;width:300px;font-size:25px;border:0px;background:transparent;" />
+<div style="position: absolute; left: 382px; top: 0px; width: 300px; height: 52px;">
+  <input name="text6" type="text" id="6"style="height:52px;width:300px;font-size:25px;border:0px;background:transparent;" />
+</div>
+</div>
+</div>
+</body>
+</html>
